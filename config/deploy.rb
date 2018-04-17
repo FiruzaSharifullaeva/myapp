@@ -1,18 +1,27 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.10.2"
 
-set :application, "my_app_name"
-set :repo_url, "git@example.com:me/my_repo.git"
+set :application, "myapp"
+set :repo_url, "https://github.com/FiruzaSharifullaeva/myapp.git"
+set :user, "firuza"
+set :branch, "master"
+set :rbenv_ruby_version, '2.5.0'
+set :default_stage, "test"
+
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, "/var/www/my_app_name"
+# set :deploy_to, "/home/firuza/myapp"
+
+set :default_environment, {
+  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
+}
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
-
+set :linked_files, fetch(:linked_files, []).push('config/database.yml')
 # You can configure the Airbrussh format using :format_options.
 # These are the defaults.
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto

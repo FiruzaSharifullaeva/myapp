@@ -8,6 +8,11 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 
 
+server '5.22.148.227', user: 'firuza', roles: %w{app web}
+
+role :app, %w{firuza@5.22.148.227}
+role :web, %w{firuza@5.22.148.227}
+role :db,  %w{firuza@5.22.148.227}
 
 # role-based syntax
 # ==================
@@ -46,6 +51,15 @@
 #    forward_agent: false,
 #    auth_methods: %w(password)
 #  }
+
+
+  set :ssh_options, {
+    keys: %w(~/.ssh/id_rsa),
+    forward_agent: true,
+    auth_methods: %w(publickey),
+    user: 'firuza'
+  }
+
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
